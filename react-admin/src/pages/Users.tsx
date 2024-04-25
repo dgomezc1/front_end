@@ -60,7 +60,7 @@ const Users = () => {
                   <Button
                     variant="contained"
                     color="primary"
-                    href={`users/${user.id}/links`}
+                    href={`users/${user.email}/links`}
                   >
                     View
                   </Button>
