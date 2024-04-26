@@ -2,10 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { User } from "../models/user";
+import axios from "axios";
 
 const Header = (props: { user: User }) => {
   const [title, setTitle] = useState("Welcome");
   const [description, setDescription] = useState("Share links to earn money");
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+    }
+  }, [error]);
 
   useEffect(() => {
     if (props.user?.id) {
@@ -23,15 +33,19 @@ const Header = (props: { user: User }) => {
     buttons = (
       <p>
         <button
-          onClick={() =>
-            (window.location.href = "http://localhost:8080/auth/google")
-          }
+          onClick={async () => {
+            await axios
+              .get("http://localhost:8080/api/health_check")
+              .then(() => {
+                window.location.href = "http://localhost:8080/auth/google";
+              })
+              .catch(() => {
+                setError(true);
+              });
+          }}
         >
           Login
         </button>
-        <Link to={"/register"} className="btn btn-secondary my-2">
-          Register
-        </Link>
       </p>
     );
   }

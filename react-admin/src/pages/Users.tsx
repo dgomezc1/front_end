@@ -23,7 +23,7 @@ const Users = () => {
   useEffect(() => {
     (async () => {
       await axios
-        .get("http://localhost:8081/api/users")
+        .get("http://localhost:8081/api/admin/users")
         .then((res) => {
           setUsers(res.data);
         })
@@ -71,7 +71,9 @@ const Users = () => {
                     color="secondary"
                     onClick={async () => {
                       await axios
-                        .delete(`http://localhost:8080/api/user/${user.id}`)
+                        .delete(
+                          `http://localhost:8081/api/admin/user/${user.id}`
+                        )
                         .then(() => {
                           setUpdated((prevState) => !prevState);
                         });
