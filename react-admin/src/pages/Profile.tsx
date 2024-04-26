@@ -21,7 +21,7 @@ const Profile = (props: any) => {
     e.preventDefault();
 
     const { data } = await axios.patch(
-      `http://localhost:8081/api/admin/user/${props.user.email}`,
+      `http://localhost:8081/api/admin/ms/user/${props.user.email}`,
       {
         first_name,
         last_name,

@@ -19,7 +19,7 @@ const Login = () => {
       <Button
         onClick={async () => {
           await axios
-            .get("http://localhost:8080/api/health_check")
+            .get("http://localhost:8080/api/ms/health_check")
             .then(() => {
               window.location.href = "http://localhost:8080/auth/google";
             })
