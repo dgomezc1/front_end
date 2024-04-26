@@ -24,7 +24,7 @@ const Header = (props: { user: User }) => {
       <p>
         <button
           onClick={() =>
-            (window.location.href = "http://localhost:8080/auth/google")
+            (window.location.href = "http://localhost:8080/api/auth/google")
           }
         >
           Login
