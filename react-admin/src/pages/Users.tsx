@@ -20,6 +20,9 @@ const Users = () => {
   const perPage = 10;
   const [updated, setUpdated] = useState(false);
 
+  const param = new URLSearchParams(window.location.search);
+  const token = param.get("token");
+
   useEffect(() => {
     (async () => {
       await axios
@@ -60,7 +63,7 @@ const Users = () => {
                   <Button
                     variant="contained"
                     color="primary"
-                    href={`users/${user.email}/links`}
+                    href={`users/${user.email}/links?token=${token}`}
                   >
                     View
                   </Button>
