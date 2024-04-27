@@ -23,7 +23,7 @@ const Users = () => {
   useEffect(() => {
     (async () => {
       await axios
-        .get("http://localhost:8081/api/admin/users")
+        .get("http://arq.gce-back.online/api/admin/ms/users")
         .then((res) => {
           setUsers(res.data);
         })
@@ -72,7 +72,7 @@ const Users = () => {
                     onClick={async () => {
                       await axios
                         .delete(
-                          `http://localhost:8081/api/admin/user/${user.id}`
+                          `http://arq.gce-back.online/api/admin/ms/user/${user.id}`
                         )
                         .then(() => {
                           setUpdated((prevState) => !prevState);

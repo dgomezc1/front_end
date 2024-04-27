@@ -35,9 +35,9 @@ const Header = (props: { user: User }) => {
         <button
           onClick={async () => {
             await axios
-              .get("http://localhost:8080/api/health_check")
+              .get("http://arq.gce-back.online/api/auth/health_check")
               .then(() => {
-                window.location.href = "http://localhost:8080/auth/google";
+                window.location.href = "http://arq.gce-back.online/api/auth/google";
               })
               .catch(() => {
                 setError(true);
