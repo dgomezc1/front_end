@@ -1,58 +1,61 @@
-import React, {Dispatch, useEffect, useState} from 'react';
+import React, { Dispatch, useEffect, useState } from "react";
 import Nav from "./Nav";
 import Menu from "./Menu";
 import axios from "axios";
-import {Redirect} from "react-router-dom";
-import {User} from "../models/user";
-import {connect} from "react-redux";
-import {setUser} from "../redux/actions/setUserAction";
+import { Redirect } from "react-router-dom";
+import { User } from "../models/user";
+import { connect } from "react-redux";
+import { setUser } from "../redux/actions/setUserAction";
 
 const Layout = (props: any) => {
-    const [redirect, setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
-    useEffect(() => {
-        (
-            async () => {
-                try {
-                    const {data} = await axios.get('user');
+  const param = new URLSearchParams(window.location.search);
+  const token = param.get("token");
 
-                    props.setUser(data);
-                } catch (e) {
-                    setRedirect(true);
-                }
-            }
-        )();
-    }, []);
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await axios.get("user", {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
 
-    if (redirect) {
-        return <Redirect to={'/login'}/>
-    }
+        props.setUser(data);
+      } catch (e) {
+        setRedirect(true);
+      }
+    })();
+  }, []);
 
-    return (
-        <div>
-            <Nav />
+  if (redirect) {
+    return <Redirect to={"/login"} />;
+  }
 
-            <div className="container-fluid">
-                <div className="row">
-                    <Menu/>
+  return (
+    <div>
+      <Nav />
 
-                    <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                        <div className="table-responsive">
-                            {props.children}
-                        </div>
-                    </main>
-                </div>
-            </div>
+      <div className="container-fluid">
+        <div className="row">
+          <Menu token={token} />
+
+          <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div className="table-responsive">{props.children}</div>
+          </main>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 const mapStateToProps = (state: { user: User }) => ({
-    user: state.user
-})
+  user: state.user,
+});
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
-    setUser: (user: User) => dispatch(setUser(user))
-})
+  setUser: (user: User) => dispatch(setUser(user)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);
