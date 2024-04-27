@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 const Login = () => {
   const [error, setError] = useState(false);
 
+  console.log(document.cookie);
+
   useEffect(() => {
     if (error) {
       setTimeout(() => {
