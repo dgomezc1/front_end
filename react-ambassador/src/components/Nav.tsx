@@ -26,13 +26,13 @@ const Nav = (props: any) => {
         <Link to={"/rankings"} className="btn me-2">
           Rankings
         </Link>
-        <Link to={"/stats"} className="btn me-2">
+        <Link to={`/stats?token=${token}`} className="btn me-2">
           Stats
         </Link>
         <a href="#" className="btn btn-outline-primary me-2" onClick={logout}>
           Logout
         </a>
-        <Link to={"/profile"} className="btn btn-primary">
+        <Link to={`/profile?token=${token}`} className="btn btn-primary">
           {props.user.first_name} {props.user.last_name}
         </Link>
       </div>
