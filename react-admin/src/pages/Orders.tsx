@@ -22,7 +22,7 @@ const Orders = () => {
     (async () => {
       const { data } = await axios.get("orders", {
         headers: {
-          Credential: `${token}`,
+          Authorization: `${token}`,
         },
       });
 

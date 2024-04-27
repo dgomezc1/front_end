@@ -35,7 +35,7 @@ const ProductsBackend = () => {
 
       const { data } = await axios.get(`products/backend?${arr.join("&")}`, {
         headers: {
-          Credential: `${token}`,
+          Authorization: `${token}`,
         },
       });
 

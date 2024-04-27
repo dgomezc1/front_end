@@ -60,7 +60,7 @@ const Products = (props: {
         },
         {
           headers: {
-            Credential: `${token}`,
+            Authorization: `${token}`,
           },
         }
       );

@@ -12,7 +12,7 @@ const Nav = (props: any) => {
   const logout = async () => {
     await axios.post("logout", {
       headers: {
-        Credential: `${token}`,
+        Authorization: `${token}`,
       },
     });
     props.setUser(null);

@@ -17,7 +17,7 @@ const Layout = (props: any) => {
       try {
         const { data } = await axios.get("user", {
           headers: {
-            Credential: `${token}`,
+            Authorization: `${token}`,
           },
         });
 

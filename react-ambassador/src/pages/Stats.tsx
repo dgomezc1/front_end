@@ -12,7 +12,7 @@ const Stats = () => {
     (async () => {
       const { data } = await axios.get("stats", {
         headers: {
-          Credential: `${token}`,
+          Authorization: `${token}`,
         },
       });
 

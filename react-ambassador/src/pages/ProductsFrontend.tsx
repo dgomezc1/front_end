@@ -23,7 +23,7 @@ const ProductsFrontend = () => {
     (async () => {
       const { data } = await axios.get("products/frontend", {
         headers: {
-          Credential: `${token}`,
+          Authorization: `${token}`,
         },
       });
 
