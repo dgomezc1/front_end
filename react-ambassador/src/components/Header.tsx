@@ -37,7 +37,8 @@ const Header = (props: { user: User }) => {
             await axios
               .get("http://arq.gce-back.online/api/auth/health_check")
               .then(() => {
-                window.location.href = "http://arq.gce-back.online/api/auth/google";
+                window.location.href =
+                  "http://arq.gce-back.online/api/auth/google";
               })
               .catch(() => {
                 setError(true);

@@ -6,8 +6,15 @@ import axios from "axios";
 import { setUser } from "../redux/actions/setUserAction";
 
 const Nav = (props: any) => {
+  const param = new URLSearchParams(window.location.search);
+  const token = param.get("token");
+
   const logout = async () => {
-    await axios.post("logout");
+    await axios.post("logout", {
+      headers: {
+        Credential: `${token}`,
+      },
+    });
     props.setUser(null);
   };
 
